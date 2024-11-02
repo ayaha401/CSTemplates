@@ -7,17 +7,20 @@ using UnityEngine.Networking;
 
 namespace AyahaGraphicDevelopTools.CSTemplates
 {
-    public class DownloadCSTemplateWindow : EditorWindow
+    public class CreateCSTemplateWindow : EditorWindow
     {
         private const string LINK_PREFIX = "https://github.com/ayaha401";
+
+        /// <summary> Editor拡張でWindowを作るためのテンプレートのあるPath </summary>
+        private const string EDITOR_WINDOW_TEMPLATE = "Assets/Editor/AyahaGraphicDevelopTools/CSTemplates/Template/EditorWindowTemplate.txt";
 
         private string _outputPath;
 
         [MenuItem("AyahaGraphicDevelopTools/CSTemplate")]
         public static void ShowWindow()
         {
-            var window = GetWindow<DownloadCSTemplateWindow>("DownloadCSTemplateWindow");
-            window.titleContent = new GUIContent("DownloadCSTemplateWindow");
+            var window = GetWindow<CreateCSTemplateWindow>("CreateCSTemplateWindow");
+            window.titleContent = new GUIContent("CreateCSTemplateWindow");
         }
 
         private void OnGUI()
@@ -44,6 +47,10 @@ namespace AyahaGraphicDevelopTools.CSTemplates
 
                 DownloadCell("GameObjectUtility", "Unity-GameObjectUtility", "GameObjectUtility.cs");
                 DownloadCell("PrefabUtility", "Unity-PrefabUtility", "MyPrefabUtility.cs");
+
+                GUILayout.Box("", GUILayout.Height(2), GUILayout.ExpandWidth(true));
+
+                CreateCell("EditorWindowTemplate", EDITOR_WINDOW_TEMPLATE, "EditorWindowTemplate.cs");
             }
         }
 
@@ -66,6 +73,35 @@ namespace AyahaGraphicDevelopTools.CSTemplates
                 if (GUILayout.Button("Open Link"))
                 {
                     Application.OpenURL(GetRepositoryLink(LINK_PREFIX, repositoryName));
+                }
+            }
+        }
+
+        /// <summary>
+        /// テンプレートからCSを作成する
+        /// </summary>
+        /// <param name="cellLabel">項目名</param>
+        /// <param name="templatePath">テンプレートの格納場所のPath</param>
+        /// <param name="fileName">ファイル名</param>
+        private void CreateCell(string cellLabel, string templatePath, string fileName)
+        {
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                GUILayout.Label(cellLabel);
+                if (GUILayout.Button("Create"))
+                {
+                    if (File.Exists(templatePath))
+                    {
+                        string content = File.ReadAllText(templatePath);
+                        content = content.Replace("#SCRIPTNAME#", cellLabel);
+                        var targetPath = Path.Combine(_outputPath, fileName);
+                        File.WriteAllText(targetPath, content);
+                        AssetDatabase.Refresh();
+                    }
+                    else
+                    {
+                        Debug.LogError("テンプレートデータがありません");
+                    }
                 }
             }
         }

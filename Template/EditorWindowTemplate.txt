@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+
+public class #SCRIPTNAME# : EditorWindow
+{
+    [MenuItem("AyahaGraphicDevelopTools/#SCRIPTNAME#")]
+    public static void ShowWindow()
+    {
+        var window = GetWindow<#SCRIPTNAME#>("#SCRIPTNAME#");
+        window.titleContent = new GUIContent("#SCRIPTNAME#");
+    }
+
+    private void OnGUI()
+    {
+
+    }
+}
