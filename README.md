@@ -9,7 +9,7 @@ Editor Coroutines
 * Editor Coroutinesをインストールしないとエラーが出る
 
 # テンプレート一覧
-なし
+* EditorWindow
 
 # ダウンロード可能スクリプト
 * [Unity-GameObjectUtility](https://github.com/ayaha401/Unity-GameObjectUtility)
