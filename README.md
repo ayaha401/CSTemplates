@@ -1,5 +1,6 @@
 # CSTemplates
 * GameObjectの生成やPrefabの扱いに関してのテンプレートをGitHubから直接ダウンロードする
+* Editor拡張をするためのテンプレートを作成する
 
 # 前提パッケージ
 Editor Coroutines
