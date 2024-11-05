@@ -11,7 +11,7 @@ namespace AyahaGraphicDevelopTools.CSTemplates
     {
         private const string LINK_PREFIX = "https://github.com/ayaha401";
 
-        /// <summary> EditorŠg’£‚ÅWindow‚ğì‚é‚½‚ß‚Ìƒeƒ“ƒvƒŒ[ƒg‚Ì‚ ‚éPath </summary>
+        /// <summary> Editoræ‹¡å¼µã§Windowã‚’ä½œã‚‹ãŸã‚ã®ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã®ã‚ã‚‹Path </summary>
         private const string EDITOR_WINDOW_TEMPLATE = "Assets/Editor/AyahaGraphicDevelopTools/CSTemplates/Template/EditorWindowTemplate.txt";
 
         private string _outputPath;
@@ -47,6 +47,7 @@ namespace AyahaGraphicDevelopTools.CSTemplates
 
                 DownloadCell("GameObjectUtility", "Unity-GameObjectUtility", "GameObjectUtility.cs");
                 DownloadCell("PrefabUtility", "Unity-PrefabUtility", "MyPrefabUtility.cs");
+                DownloadCell("Unity-Extensions", "Unity-Extensions", "Extensions.cs");
 
                 GUILayout.Box("", GUILayout.Height(2), GUILayout.ExpandWidth(true));
 
@@ -55,11 +56,11 @@ namespace AyahaGraphicDevelopTools.CSTemplates
         }
 
         /// <summary>
-        /// ƒ_ƒEƒ“ƒ[ƒh‚·‚é€–Ú
+        /// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹é …ç›®
         /// </summary>
-        /// <param name="cellLabel">€–Ú–¼</param>
-        /// <param name="repositoryName">ƒŠƒ|ƒWƒgƒŠ–¼</param>
-        /// <param name="fileName">ƒtƒ@ƒCƒ‹–¼</param>
+        /// <param name="cellLabel">é …ç›®å</param>
+        /// <param name="repositoryName">ãƒªãƒã‚¸ãƒˆãƒªå</param>
+        /// <param name="fileName">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
         private void DownloadCell(string cellLabel, string repositoryName, string fileName)
         {
             using (new EditorGUILayout.HorizontalScope())
@@ -78,11 +79,11 @@ namespace AyahaGraphicDevelopTools.CSTemplates
         }
 
         /// <summary>
-        /// ƒeƒ“ƒvƒŒ[ƒg‚©‚çCS‚ğì¬‚·‚é
+        /// ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‹ã‚‰CSã‚’ä½œæˆã™ã‚‹
         /// </summary>
-        /// <param name="cellLabel">€–Ú–¼</param>
-        /// <param name="templatePath">ƒeƒ“ƒvƒŒ[ƒg‚ÌŠi”[êŠ‚ÌPath</param>
-        /// <param name="fileName">ƒtƒ@ƒCƒ‹–¼</param>
+        /// <param name="cellLabel">é …ç›®å</param>
+        /// <param name="templatePath">ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã®æ ¼ç´å ´æ‰€ã®Path</param>
+        /// <param name="fileName">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
         private void CreateCell(string cellLabel, string templatePath, string fileName)
         {
             using (new EditorGUILayout.HorizontalScope())
@@ -100,19 +101,19 @@ namespace AyahaGraphicDevelopTools.CSTemplates
                     }
                     else
                     {
-                        Debug.LogError("ƒeƒ“ƒvƒŒ[ƒgƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñ");
+                        Debug.LogError("ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã›ã‚“");
                     }
                 }
             }
         }
 
         /// <summary>
-        /// ƒtƒ@ƒCƒ‹‚ğƒ_ƒEƒ“ƒ[ƒh‚·‚é
+        /// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
         /// </summary>
-        /// <param name="prefix">URL‚Ìæ“ª•”•ª</param>
-        /// <param name="repositoryName">ƒŠƒ|ƒWƒgƒŠ–¼</param>
-        /// <param name="fileName">ƒtƒ@ƒCƒ‹–¼</param>
-        /// <param name="outputPath">o—Íæ</param>
+        /// <param name="prefix">URLã®å…ˆé ­éƒ¨åˆ†</param>
+        /// <param name="repositoryName">ãƒªãƒã‚¸ãƒˆãƒªå</param>
+        /// <param name="fileName">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+        /// <param name="outputPath">å‡ºåŠ›å…ˆ</param>
         private IEnumerator DownloadFile(string prefix, string repositoryName, string fileName, string outputPath)
         {
             using (UnityWebRequest request = UnityWebRequest.Get(GetFilePath(prefix, repositoryName, fileName)))
@@ -139,21 +140,21 @@ namespace AyahaGraphicDevelopTools.CSTemplates
         }
 
         /// <summary>
-        /// ƒ_ƒEƒ“ƒ[ƒh‚·‚éƒtƒ@ƒCƒ‹ƒpƒX‚ğì¬
+        /// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ä½œæˆ
         /// </summary>
-        /// <param name="prefix">URL‚Ìæ“ª•”•ª</param>
-        /// <param name="repositoryName">ƒŠƒ|ƒWƒgƒŠ–¼</param>
-        /// <param name="fileName">ƒtƒ@ƒCƒ‹–¼</param>
+        /// <param name="prefix">URLã®å…ˆé ­éƒ¨åˆ†</param>
+        /// <param name="repositoryName">ãƒªãƒã‚¸ãƒˆãƒªå</param>
+        /// <param name="fileName">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
         private string GetFilePath(string prefix, string repositoryName, string fileName)
         {
             return Path.Combine(prefix, repositoryName, "raw/main", fileName);
         }
 
         /// <summary>
-        /// ƒŠƒ|ƒWƒgƒŠ‚Ì‚ ‚éƒŠƒ“ƒN‚ğì¬
+        /// ãƒªãƒã‚¸ãƒˆãƒªã®ã‚ã‚‹ãƒªãƒ³ã‚¯ã‚’ä½œæˆ
         /// </summary>
-        /// <param name="prefix">URL‚Ìæ“ª•”•ª</param>
-        /// <param name="repositoryName">ƒŠƒ|ƒWƒgƒŠ–¼</param>
+        /// <param name="prefix">URLã®å…ˆé ­éƒ¨åˆ†</param>
+        /// <param name="repositoryName">ãƒªãƒã‚¸ãƒˆãƒªå</param>
         private string GetRepositoryLink(string prefix, string repositoryName)
         {
             return Path.Combine(prefix, repositoryName);
